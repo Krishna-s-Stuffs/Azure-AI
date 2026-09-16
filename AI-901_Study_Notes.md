@@ -1,4 +1,4 @@
-# AI-901: Microsoft Azure AI Fundamentals — Detailed Study Notes
+# AI-900 & AI-901: Microsoft Azure AI Fundamentals — Combined Detailed Study Notes
 
 **Official skills outline as of April 15, 2026** (source: Microsoft Learn). AI-901 replaced AI-900, which retired June 30, 2026. Passing score: 700/1000. Requires basic Python familiarity and awareness of Azure resources, REST APIs, SDKs, and CLIs — a step up from AI-900, which needed no coding at all.
 
@@ -296,3 +296,137 @@ D) Smaller models cannot be deployed via Foundry
 - **Agentic AI and Content Understanding are the biggest new content areas** vs. AI-900 — spend extra time here.
 - Old AI-900 material on standalone "Azure AI Vision," "Azure AI Language," etc. as separate resources is still conceptually useful (Domain 1 overlaps a lot with AI-900), but the *implementation* focus has shifted to accessing these capabilities through Foundry.
 - Use Microsoft's free official practice assessment on **AI Skills Navigator** before the real exam.
+
+---
+
+# APPENDIX: AI-900 (Legacy) Material
+
+AI-901 no longer tests these directly as separate exam sub-skills, but this content is useful background — it explains the classic ML foundations and old service-by-service breakdown that AI-901 assumes you've internalized (it just tests the *newer, Foundry-based* application layer on top). Worth knowing if you're studying from older resources, interviewing at a place still using this terminology, or just want the fuller conceptual picture.
+
+## A.1 Machine Learning Fundamentals (AI-900 Domain, 15–20%)
+
+### Core ML Techniques
+- **Regression** — predicts a **continuous numeric value** (e.g., house price, temperature)
+- **Classification** — predicts a **category/class label** (e.g., spam vs. not spam)
+  - Binary classification (2 classes) vs. multiclass classification (3+ classes)
+- **Clustering** — groups similar data points **without labeled outcomes** (unsupervised) — e.g., customer segmentation
+
+**Key distinction:** Regression/Classification = **supervised learning** (labeled data). Clustering = **unsupervised learning** (no labels).
+
+### Deep Learning & Transformer Architecture
+- **Deep learning** — multi-layered **neural networks** modeling complex patterns; needs large data/compute (often GPUs)
+- **Neural network basics:** input layer → hidden layer(s) → output layer; nodes have weights, adjusted via training
+- **Transformer architecture** (still directly relevant to AI-901's Domain 1.2):
+  - **Attention mechanism** — weighs importance of tokens relative to each other regardless of position
+  - **Encoder** — builds a representation/understanding of input
+  - **Decoder** — generates output based on that representation
+  - Encoder-only (BERT-style, understanding), decoder-only (GPT-style, generation), encoder-decoder (translation-style)
+
+### Core ML Concepts
+- **Features** — input variables used to make predictions (e.g., square footage, bedrooms)
+- **Labels** — the known output/answer being predicted (e.g., actual sale price) — only present in supervised learning
+- **Training dataset** — data used to teach/fit the model
+- **Validation dataset** — separate data used to tune the model and check against overfitting before final evaluation
+
+### Azure Machine Learning (classic) Capabilities
+- **Automated ML (AutoML)** — automatically tries multiple algorithms/hyperparameters to find the best model with minimal manual coding
+- **Azure ML Designer** — drag-and-drop, no-code/low-code visual pipeline builder
+- **Compute options:** Compute Instances (dev workstation), Compute Clusters (scalable training, autoscale to 0), Inference Clusters (AKS-based deployment), Attached Compute (external resources)
+- **Datastores** — connections to Blob Storage, Data Lake, etc., feeding data into pipelines
+- **Model management & deployment:** register models in a model registry for versioning; deploy as a **real-time endpoint** (immediate predictions) or **batch endpoint** (large-scale async predictions)
+- **Responsible AI dashboard** — Azure ML tooling for fairness, explainability, error analysis
+
+## A.2 Computer Vision Workloads — Classic Service Breakdown (AI-900 Domain, 15–20%)
+
+### Types of Computer Vision Solutions
+| Solution | What it does |
+|---|---|
+| **Image classification** | Assigns a label/category to an entire image |
+| **Object detection** | Identifies multiple objects and draws **bounding boxes** with labels |
+| **Semantic segmentation** | Classifies every pixel into a category — most granular |
+| **OCR** | Extracts printed or handwritten text from images/documents |
+| **Facial detection** | Locates human faces (bounding box) |
+| **Facial analysis** | Extracts attributes (age estimate, emotion, head pose) — subject to Responsible AI restrictions |
+
+**Trap:** Object detection = bounding box + label per object. Image classification = ONE label for the whole image. Segmentation = pixel-level, most precise.
+
+### Classic Azure Tools/Services
+- **Azure AI Vision** (formerly Computer Vision) — image analysis (tags, captions, objects, brands, adult content moderation), OCR/Read API, spatial analysis
+- **Azure AI Custom Vision** — train your **own custom** image classification/object detection model with your own labeled images
+- **Azure AI Face service** — face detection, verification, and analysis; strict Responsible AI gating around identification use cases
+
+## A.3 NLP Workloads — Classic Service Breakdown (AI-900 Domain, 15–20%)
+
+### Common NLP Tasks
+| Task | Description |
+|---|---|
+| **Key phrase extraction** | Pulls out main talking points/phrases |
+| **Entity recognition (NER)** | Identifies/categorizes entities — people, places, orgs, dates, quantities |
+| **Sentiment analysis** | Positive/negative/neutral/mixed, with confidence scores |
+| **Language detection** | Identifies which language text is written in |
+| **Language modeling** | Predicting/generating likely word sequences; underlies autocomplete, generation |
+| **Speech recognition (speech-to-text)** | Converts spoken audio to text |
+| **Speech synthesis (text-to-speech)** | Converts text to natural spoken audio |
+| **Translation** | Converts text/speech between languages |
+
+### Classic Azure Tools/Services
+- **Azure AI Language** — key phrase extraction, entity recognition, sentiment analysis, language detection; **Conversational Language Understanding (CLU)** for custom chatbot NLU; **Question Answering** for FAQ-style knowledge bases; extractive/abstractive summarization
+- **Azure AI Speech** — speech-to-text, text-to-speech, **Speech Translation** (real-time speech-to-speech/text), speaker recognition
+- **Azure AI Translator** — dedicated text translation (distinct from Speech Translation, which handles audio)
+
+**Trap:** Azure AI Language (text-based NLP) vs. Azure AI Translator (dedicated text translation) vs. Azure AI Speech (audio in/out).
+
+## A.4 Generative AI Workloads — AI-900's Original Framing (20–25%)
+
+AI-900's final version (May 2025 update) already introduced generative AI before AI-901 expanded it into the dominant, hands-on Domain 2 above:
+- **Azure AI Foundry** (formerly Azure AI Studio) — unified platform to explore, build, test, deploy generative AI apps/agents; includes the **Model catalog**
+- **Azure OpenAI Service** — Azure-hosted access to OpenAI's models (GPT family, embeddings, DALL·E) with enterprise security/compliance; built-in **content filtering**; supports fine-tuning and grounding with your own data
+- **Prompt engineering, grounding, and hallucination** — same core concepts still tested in AI-901 (see Domain 1.2/2.1 above)
+
+**Trap:** Azure AI Foundry = the overall platform/workspace; Azure OpenAI Service = specifically OpenAI's models hosted on Azure; Model Catalog = the model-browsing feature inside Foundry.
+
+## A.5 AI-900 Quick-Reference: Frequently Confused Pairs
+- **Classification vs. Clustering** — labeled/supervised vs. unlabeled/unsupervised
+- **Object Detection vs. Semantic Segmentation** — bounding boxes vs. pixel-level classification
+- **Azure AI Language vs. Azure AI Translator** — general NLP tasks vs. dedicated translation
+- **Azure AI Vision vs. Azure AI Custom Vision** — pre-built general model vs. train-your-own custom model
+- **Training dataset vs. Validation dataset** — fit the model vs. tune/check the model
+
+## A.6 AI-900 Legacy Practice Questions
+
+**Q1.** A dataset has no labeled outcomes, and the goal is to group similar customers together. Which ML technique applies?
+A) Regression
+B) Classification
+C) Clustering
+D) Object detection
+
+**Q2.** Which computer vision solution draws a bounding box around each detected item and labels it?
+A) Image classification
+B) Object detection
+C) Semantic segmentation
+D) OCR
+
+**Q3.** Which Azure service would you use specifically to train your own custom image classifier using your own labeled photos?
+A) Azure AI Vision
+B) Azure AI Custom Vision
+C) Azure AI Face
+D) Azure Machine Learning Designer
+
+**Q4.** What is the difference between a training dataset and a validation dataset?
+A) They are the same thing
+B) Training data fits the model; validation data tunes/checks it before final evaluation
+C) Validation data is only used for clustering
+D) Training data is always unlabeled
+
+**Q5.** Which Azure AI Language feature would identify that a support ticket is expressing frustration?
+A) Key phrase extraction
+B) Sentiment analysis
+C) Language detection
+D) Entity recognition
+
+### Answer Key (A.6)
+1. **C** — Clustering (unsupervised, no labels)
+2. **B** — Object detection (bounding boxes + labels)
+3. **B** — Azure AI Custom Vision (train-your-own model)
+4. **B** — Training fits, validation tunes/checks
+5. **B** — Sentiment analysis
