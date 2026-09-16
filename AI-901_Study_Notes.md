@@ -52,6 +52,8 @@
 
 Same six pillars as AI-900 — still foundational, appears across both domains.
 
+![The six Responsible AI principles: fairness, reliability and safety, privacy and security, inclusiveness, transparency, accountability](images/responsible_ai.svg)
+
 | Principle | Meaning | Scenario cue |
 |---|---|---|
 | ⚖️ **Fairness** | AI treats all groups equitably; actively test for and mitigate bias | *"A hiring model favors one gender over another"* |
@@ -116,6 +118,8 @@ Same six pillars as AI-900 — still foundational, appears across both domains.
 | `frequency_penalty` / `presence_penalty` | Reduce repetition in output |
 | `stop` sequences | Strings that tell the model to stop generating |
 
+![Effect of temperature on generative output: low temperature concentrates probability on one token for focused, repeatable output; high temperature spreads probability across many tokens for varied, creative output](images/temperature.svg)
+
 </details>
 
 ---
@@ -148,6 +152,8 @@ Same six pillars as AI-900 — still foundational, appears across both domains.
 - ✨ **Responding to spoken prompts using a deployed multimodal model** — some models take audio input directly, skipping the separate speech-to-text step
 
 #### 1.3.3 Computer Vision and Image-Generation Models
+
+![Comparison of image classification, object detection, and semantic segmentation: classification gives one label for the whole image, object detection draws bounding boxes with labels, segmentation classifies every pixel](images/cv_comparison.svg)
 
 | Capability | Description |
 |---|---|
@@ -190,13 +196,7 @@ Ties directly to **Azure AI Content Understanding** (core Foundry Tools capabili
 
 **Deploying and interacting with a model in the Foundry portal** — typical workflow:
 
-```mermaid
-graph LR
-    A[Browse Model Catalog] --> B[Deploy model to endpoint]
-    B --> C[Test in chat playground]
-    C --> D[Tune parameters]
-    D --> E[Iterate on system prompt]
-```
+![Foundry model deployment workflow: browse the model catalog, deploy to an endpoint, test in the chat playground, then iterate on the prompt](images/foundry_workflow.svg)
 
 1. Browse the **Model Catalog** (Microsoft, OpenAI, Meta, Mistral, and other providers)
 2. **Deploy** to an endpoint (serverless/pay-as-you-go vs. managed compute)
@@ -226,9 +226,7 @@ Building an agent typically involves:
 
 The client must also handle **tool-call events**:
 
-```
-user input → agent reasons → agent calls a tool → tool result returned to agent → agent produces final response
-```
+![Agent tool-call loop: user input goes to the agent, the agent reasons and calls a tool, the tool executes and returns a result to the agent, and the agent produces a final response](images/agent_loop.svg)
 
 ---
 
@@ -417,6 +415,9 @@ D) Smaller models cannot be deployed via Foundry
 <summary><b>A.1 — Machine Learning Fundamentals (AI-900 Domain, 15–20%)</b></summary>
 
 **Core ML Techniques**
+
+![Regression predicts a continuous value with a best-fit line, classification separates points into categories with a decision boundary, clustering groups similar points without labels](images/ml_techniques.svg)
+
 - **Regression** — predicts a **continuous numeric value** (e.g., house price, temperature)
 - **Classification** — predicts a **category/class label** (e.g., spam vs. not spam); binary (2 classes) or multiclass (3+)
 - **Clustering** — groups similar data points **without labeled outcomes** (unsupervised), e.g., customer segmentation
@@ -452,6 +453,8 @@ D) Smaller models cannot be deployed via Foundry
 
 <details>
 <summary><b>A.2 — Computer Vision Workloads: Classic Service Breakdown (AI-900 Domain, 15–20%)</b></summary>
+
+![Comparison of image classification, object detection, and semantic segmentation](images/cv_comparison.svg)
 
 | Solution | What it does |
 |---|---|
