@@ -1,55 +1,92 @@
-# AI-900 & AI-901: Microsoft Azure AI Fundamentals — Combined Detailed Study Notes
+<div align="center">
 
-**Official skills outline as of April 15, 2026** (source: Microsoft Learn). AI-901 replaced AI-900, which retired June 30, 2026. Passing score: 700/1000. Requires basic Python familiarity and awareness of Azure resources, REST APIs, SDKs, and CLIs — a step up from AI-900, which needed no coding at all.
+# 🧠 AI-900 & AI-901 — Microsoft Azure AI Fundamentals
+### Combined Detailed Study Notes
 
-**Key shift from AI-900:** AI-900 asked you to *describe* what Azure AI services do. AI-901 asks you to *actually build* small AI apps/agents using **Microsoft Foundry** (Foundry portal + Foundry SDK). Expect some "what would this code/config do" style questions, not just terminology.
+![Exam](https://img.shields.io/badge/Exam-AI--901-blue) ![Status](https://img.shields.io/badge/AI--900-Retired%20June%202026-lightgrey) ![Pass Score](https://img.shields.io/badge/Passing%20Score-700%2F1000-success) ![Source](https://img.shields.io/badge/Source-Microsoft%20Learn-0078D4)
 
----
+</div>
 
-## Domain Weights
+> [!IMPORTANT]
+> **AI-900 retired June 30, 2026** and was replaced by **AI-901** (skills as of **April 15, 2026**, per Microsoft Learn). This document covers the **current AI-901 outline in full**, plus an **AI-900 legacy appendix** for background, older resources, and interview context.
 
-| Domain | Weight |
-|---|---|
-| **1. Identify AI concepts and capabilities** | 40–45% |
-| **2. Implement AI solutions by using Microsoft Foundry** | 55–60% |
-
-Domain 2 is now the majority of the exam — hands-on Foundry skills matter more than pure theory.
+> [!TIP]
+> **Key shift:** AI-900 asked you to *describe* what Azure AI services do. AI-901 asks you to *actually build* small AI apps/agents using **Microsoft Foundry** (portal + SDK). Expect "what would this code/config do" style questions, not just term definitions.
 
 ---
 
-# DOMAIN 1: Identify AI Concepts and Capabilities (40–45%)
+## 📑 Table of Contents
 
-## 1.1 Principles of Responsible AI
+- [Domain Weights](#-domain-weights)
+- [Domain 1: Identify AI Concepts and Capabilities (40–45%)](#-domain-1-identify-ai-concepts-and-capabilities-4045)
+  - [1.1 Principles of Responsible AI](#11-principles-of-responsible-ai)
+  - [1.2 AI Model Components and Configurations](#12-ai-model-components-and-configurations)
+  - [1.3 Identify AI Workloads](#13-identify-ai-workloads)
+- [Domain 2: Implement AI Solutions Using Microsoft Foundry (55–60%)](#-domain-2-implement-ai-solutions-by-using-microsoft-foundry-5560)
+  - [2.1 Generative AI Apps and Agents](#21-implement-generative-ai-apps-and-agents-using-foundry)
+  - [2.2 Text and Speech](#22-implement-ai-solutions-for-text-and-speech-using-foundry)
+  - [2.3 Computer Vision and Image Generation](#23-implement-ai-solutions-with-computer-vision-and-image-generation-using-foundry)
+  - [2.4 Information Extraction (Content Understanding)](#24-implement-ai-solutions-for-information-extraction-using-foundry-content-understanding)
+- [Quick-Reference: Frequently Confused Concepts](#-quick-reference-frequently-confused-concepts)
+- [Practice Questions (AI-901)](#-practice-questions-ai-901)
+- [Exam Tips Checklist](#-exam-tips-checklist)
+- [Appendix: AI-900 Legacy Material](#-appendix-ai-900-legacy-material)
+
+---
+
+## 📊 Domain Weights
+
+| # | Domain | Weight |
+|:-:|---|:-:|
+| 1 | **Identify AI concepts and capabilities** | `40–45%` |
+| 2 | **Implement AI solutions by using Microsoft Foundry** | `55–60%` |
+
+> [!NOTE]
+> Domain 2 is now the **majority** of the exam — hands-on Foundry skills matter more than pure theory.
+
+---
+
+## 🔷 DOMAIN 1: Identify AI Concepts and Capabilities (40–45%)
+
+### 1.1 Principles of Responsible AI
 
 Same six pillars as AI-900 — still foundational, appears across both domains.
 
 | Principle | Meaning | Scenario cue |
 |---|---|---|
-| **Fairness** | AI treats all groups equitably; actively test for and mitigate bias | "A hiring model favors one gender over another" |
-| **Reliability & Safety** | Consistent performance, including rare/edge cases; rigorous testing before deployment | "A medical AI tool must be tested extensively before clinical use" |
-| **Privacy & Security** | Protect personal data; secure the system against misuse/attack | "Anonymizing training data"; "restricting access to model endpoints" |
-| **Inclusiveness** | AI systems benefit and are usable by people of all abilities, backgrounds | "App supports screen readers and multiple languages" |
-| **Transparency** | Users understand how/why an AI reached a decision; disclose AI use | "Providing explanations for a loan denial"; "labeling AI-generated content" |
-| **Accountability** | Humans/organizations remain responsible for AI outcomes; governance in place | "A governance board reviews model behavior before release" |
+| ⚖️ **Fairness** | AI treats all groups equitably; actively test for and mitigate bias | *"A hiring model favors one gender over another"* |
+| 🛡️ **Reliability & Safety** | Consistent performance, including rare/edge cases; rigorous testing before deployment | *"A medical AI tool must be tested extensively before clinical use"* |
+| 🔒 **Privacy & Security** | Protect personal data; secure the system against misuse/attack | *"Anonymizing training data"; "restricting access to model endpoints"* |
+| 🌍 **Inclusiveness** | AI systems benefit and are usable by people of all abilities, backgrounds | *"App supports screen readers and multiple languages"* |
+| 🔍 **Transparency** | Users understand how/why an AI reached a decision; disclose AI use | *"Providing explanations for a loan denial"; "labeling AI-generated content"* |
+| 👤 **Accountability** | Humans/organizations remain responsible for AI outcomes; governance in place | *"A governance board reviews model behavior before release"* |
 
-**Exam trap:** Fairness = *no biased outcomes*. Inclusiveness = *broad accessibility of the system*. Don't confuse the two.
+> [!WARNING]
+> **Exam trap:** Fairness = *no biased outcomes*. Inclusiveness = *broad accessibility of the system*. Don't confuse the two.
 
-## 1.2 AI Model Components and Configurations
+---
 
-### How generative AI models work
+### 1.2 AI Model Components and Configurations
+
+<details>
+<summary><b>🧩 How generative AI models work</b> (click to expand)</summary>
+
 - **Large Language Models (LLMs)** are built on the **Transformer architecture**.
 - **Tokenization** — input text is broken into tokens (words or sub-words) before processing.
 - **Embeddings** — tokens are converted into numeric vectors that capture semantic meaning; similar meanings → similar vectors.
 - **Attention mechanism** — lets the model weigh which tokens matter most relative to each other, regardless of position in the sequence — this is what lets transformers handle long-range context well.
 - **Next-token prediction** — generative models work by predicting the most probable next token given everything before it, repeated to build full responses.
 - **Encoder vs. decoder:**
-  - **Encoder-only** (e.g., BERT-style) — good for understanding/classification tasks
-  - **Decoder-only** (e.g., GPT-style) — good for generation tasks
-  - **Encoder-decoder** — good for transformation tasks like translation/summarization
+  - `Encoder-only` (e.g., BERT-style) → understanding/classification tasks
+  - `Decoder-only` (e.g., GPT-style) → generation tasks
+  - `Encoder-decoder` → transformation tasks like translation/summarization
 - **Multimodal models** — accept/generate more than one content type (text + image, text + audio), e.g., GPT-4o-class models. AI-901 leans heavily on multimodal models because Foundry tasks use them for vision and speech.
 
-### Choosing an appropriate model based on capabilities
-Considerations tested:
+</details>
+
+<details>
+<summary><b>🎯 Choosing an appropriate model based on capabilities</b> (click to expand)</summary>
+
 - **Task fit** — does the model support text, vision, audio, or multiple modalities?
 - **Context window size** — how much input (tokens) the model can consider at once
 - **Cost vs. performance tradeoffs** — smaller/cheaper models for simple tasks vs. larger models for complex reasoning
@@ -57,376 +94,465 @@ Considerations tested:
 - **Specialization** — some models are tuned for code, reasoning, or specific domains
 - **Licensing/openness** — proprietary (e.g., OpenAI models via Azure OpenAI) vs. open-source models available in the Foundry Model Catalog
 
-### Model deployment options and configuration parameters
-- **Deployment options in Foundry:**
-  - **Serverless API / pay-as-you-go endpoints** — no infrastructure management, billed per use
-  - **Managed compute / real-time endpoints** — dedicated compute, more control, needed for high-throughput or custom scenarios
-  - **Batch deployment** — for large-scale, asynchronous, non-real-time processing
-- **Key configuration parameters to know:**
-  - **Temperature** — controls randomness/creativity; low = more deterministic/focused, high = more varied/creative
-  - **Max tokens** — caps the length of the generated response
-  - **Top P (nucleus sampling)** — controls diversity by limiting token choices to a cumulative probability mass
-  - **Frequency/presence penalties** — reduce repetition in output
-  - **Stop sequences** — strings that tell the model to stop generating
+</details>
 
-## 1.3 Identify AI Workloads
+<details>
+<summary><b>⚙️ Model deployment options and configuration parameters</b> (click to expand)</summary>
 
-### Common AI workload categories (know examples of each)
-- **Generative AI** — creating new text, images, audio, or code (e.g., drafting content, generating illustrations)
-- **Agentic AI** — AI systems (**agents**) that can autonomously plan, use tools/functions, and take multi-step actions toward a goal, not just respond to a single prompt. New emphasis vs. AI-900.
-- **Text analysis** — extracting insight from written text (see 1.3.1 below)
-- **Speech** — recognizing and synthesizing spoken language
-- **Computer vision** — extracting information from images/video
-- **Information extraction** — pulling structured data out of unstructured sources (documents, forms, images, audio, video) — powered in Foundry by **Content Understanding**
+**Deployment options in Foundry:**
+| Option | Best for |
+|---|---|
+| `Serverless API / pay-as-you-go` | No infra management, billed per use |
+| `Managed compute / real-time endpoint` | Dedicated compute, more control, high-throughput/custom needs |
+| `Batch deployment` | Large-scale, asynchronous, non-real-time processing |
 
-### 1.3.1 Text Analysis Techniques
+**Key configuration parameters:**
+
+| Parameter | Effect |
+|---|---|
+| `temperature` | Controls randomness — low = deterministic/focused, high = varied/creative |
+| `max_tokens` | Caps the length of the generated response |
+| `top_p` (nucleus sampling) | Limits token choices to a cumulative probability mass — controls diversity |
+| `frequency_penalty` / `presence_penalty` | Reduce repetition in output |
+| `stop` sequences | Strings that tell the model to stop generating |
+
+</details>
+
+---
+
+### 1.3 Identify AI Workloads
+
+**Common AI workload categories:**
+
+- 🤖 **Generative AI** — creating new text, images, audio, or code
+- 🕹️ **Agentic AI** — systems (**agents**) that autonomously plan, use tools/functions, and take multi-step actions toward a goal — *new emphasis vs. AI-900*
+- 📝 **Text analysis** — extracting insight from written text
+- 🎙️ **Speech** — recognizing and synthesizing spoken language
+- 👁️ **Computer vision** — extracting information from images/video
+- 📄 **Information extraction** — pulling structured data out of unstructured sources, powered in Foundry by **Content Understanding**
+
+#### 1.3.1 Text Analysis Techniques
+
 | Technique | Description |
 |---|---|
-| **Keyword/key phrase extraction** | Identifies the most important words/phrases representing the main points of text |
-| **Entity detection (NER)** | Identifies and categorizes named entities — people, organizations, locations, dates, quantities, etc. |
-| **Sentiment analysis** | Classifies text as positive, negative, neutral, or mixed, typically with confidence scores |
-| **Summarization** | Condenses longer text into a shorter version — **extractive** (pulls key existing sentences) vs. **abstractive** (generates new, paraphrased summary text) |
+| **Keyword / key phrase extraction** | Identifies the most important words/phrases representing the main points of text |
+| **Entity detection (NER)** | Identifies and categorizes named entities — people, organizations, locations, dates, quantities |
+| **Sentiment analysis** | Classifies text as positive, negative, neutral, or mixed, with confidence scores |
+| **Summarization** | Condenses text — **extractive** (existing sentences) vs. **abstractive** (new, paraphrased) |
 
-### 1.3.2 Speech Recognition and Synthesis
-- **Speech recognition (speech-to-text)** — converts spoken audio into text; supports real-time (streaming) and batch (pre-recorded file) transcription
-- **Speech synthesis (text-to-speech)** — converts text into natural spoken audio; supports prebuilt neural voices and custom voice creation
+#### 1.3.2 Speech Recognition and Synthesis
+
+- **Speech recognition (speech-to-text)** — converts spoken audio into text; real-time (streaming) or batch (pre-recorded)
+- **Speech synthesis (text-to-speech)** — converts text into natural spoken audio; prebuilt or custom neural voices
 - **Speech translation** — real-time translation of spoken input into another language (text or speech output)
-- Relevant capability: **responding to spoken prompts using a deployed multimodal model** — some modern multimodal models can take audio input directly rather than requiring a separate speech-to-text step first
+- ✨ **Responding to spoken prompts using a deployed multimodal model** — some models take audio input directly, skipping the separate speech-to-text step
 
-### 1.3.3 Computer Vision and Image-Generation Models
+#### 1.3.3 Computer Vision and Image-Generation Models
+
 | Capability | Description |
 |---|---|
 | **Image classification** | Assigns one label to a whole image |
-| **Object detection** | Detects multiple objects and draws bounding boxes with labels |
+| **Object detection** | Detects multiple objects, draws bounding boxes with labels |
 | **Semantic segmentation** | Classifies every pixel into a category — most granular |
 | **OCR** | Extracts printed/handwritten text from images |
-| **Facial detection/analysis** | Locates faces and extracts attributes (subject to Responsible AI restrictions on identification use cases) |
-| **Image generation** | Generative models (e.g., DALL·E-class, diffusion models) create new images from text prompts |
-| **Multimodal vision models** | Models that can interpret an image passed alongside a text prompt and respond about its content (visual question answering, image captioning) |
+| **Facial detection/analysis** | Locates faces and extracts attributes ⚠️ *subject to Responsible AI restrictions* |
+| **Image generation** | Generative models (DALL·E-class, diffusion) create new images from text prompts |
+| **Multimodal vision models** | Interpret an image + text prompt together (visual Q&A, image captioning) |
 
-### 1.3.4 Extracting Information from Text, Images, Audio, and Video
-This ties directly to **Azure AI Content Understanding** (a core Foundry Tools capability new to this exam):
+#### 1.3.4 Extracting Information from Text, Images, Audio, and Video
+
+Ties directly to **Azure AI Content Understanding** (core Foundry Tools capability, new to this exam):
+
 - Extracts **structured data** from **unstructured** multimodal content
-- Works across **documents/forms** (invoices, receipts, contracts), **images**, **audio**, and **video**
+- Works across **documents/forms**, **images**, **audio**, and **video**
 - Typical outputs: key-value fields, tables, entities, timestamps/transcripts, classifications
-- Distinct from simple OCR — Content Understanding can combine multiple modalities and apply schemas/templates to extract exactly the fields you define
+- Distinct from simple OCR — applies schemas/templates across modalities to extract exactly the fields you define
 
 ---
 
-# DOMAIN 2: Implement AI Solutions by Using Microsoft Foundry (55–60%)
+## 🔶 DOMAIN 2: Implement AI Solutions by Using Microsoft Foundry (55–60%)
 
 **Microsoft Foundry** (successor branding to Azure AI Studio / Azure AI Foundry) is the unified platform for building, testing, and deploying generative AI apps and agents. This domain tests whether you know the *workflow* of building with it, not just what it is.
 
-## 2.1 Implement Generative AI Apps and Agents Using Foundry
+### 2.1 Implement Generative AI Apps and Agents Using Foundry
 
-### Prompt engineering — system and user prompts
-- **System prompt/message** — sets the model's role, tone, constraints, and behavior for the whole session (e.g., "You are a helpful customer support agent for a software company. Only answer questions about billing.")
+**Prompt engineering — system and user prompts**
+
+- **System prompt/message** — sets the model's role, tone, constraints, and behavior for the whole session
+  > *e.g. "You are a helpful customer support agent for a software company. Only answer questions about billing."*
 - **User prompt** — the actual end-user input/question
 - **Effective prompting techniques:**
-  - Be specific and give context
-  - Use **few-shot examples** (show sample input/output pairs) to guide format
-  - Break complex tasks into steps (**chain-of-thought style prompting**)
-  - Define output format explicitly (e.g., "respond in JSON with fields X and Y")
-  - **Grounding** — supply the model with specific, current, relevant data (e.g., via retrieval) so answers are based on real facts instead of only the model's trained knowledge; reduces **hallucination** (confident but false/fabricated output)
+  - [x] Be specific and give context
+  - [x] Use **few-shot examples** (sample input/output pairs) to guide format
+  - [x] Break complex tasks into steps (**chain-of-thought style prompting**)
+  - [x] Define output format explicitly (e.g., "respond in JSON with fields X and Y")
+  - [x] Use **grounding** — supply relevant data so answers are fact-based, reducing **hallucination**
 
-### Deploying and interacting with a model in the Foundry portal
-Typical workflow:
-1. Browse the **Model Catalog** in Foundry (models from Microsoft, OpenAI, Meta, Mistral, and other providers)
-2. Select and **deploy** a model to an endpoint (choosing a deployment type — serverless/pay-as-you-go vs. managed compute)
-3. Use the **Foundry portal's chat playground** to test prompts interactively and tune parameters (temperature, max tokens, etc.) before writing code
-4. Review responses, adjust the system prompt, and iterate
+**Deploying and interacting with a model in the Foundry portal** — typical workflow:
 
-### Building a lightweight chat client with the Foundry SDK
-- The **Foundry SDK** lets you call deployed models from your own code (Python is the emphasized language for this exam)
-- A minimal chat client typically: authenticates to the Foundry project/endpoint → sends a system message + user message → receives and displays the model's response → optionally loops for multi-turn conversation, appending prior turns to maintain context
-- Know that conversation history must be resent each turn since these APIs are stateless by default (unless a specific "threads"/session feature is used)
+```mermaid
+graph LR
+    A[Browse Model Catalog] --> B[Deploy model to endpoint]
+    B --> C[Test in chat playground]
+    C --> D[Tune parameters]
+    D --> E[Iterate on system prompt]
+```
 
-### Creating and testing a single-agent solution in the Foundry portal
-- An **agent** = a model configured with a specific **role/instructions**, plus optionally **tools/functions** it can call (e.g., a search tool, a calculator, a custom API) and/or **knowledge sources** it can retrieve from
-- Building an agent in the portal typically involves:
-  1. Defining the agent's instructions (its system prompt/persona and task)
-  2. Attaching **tools** (function calling) so the agent can take actions beyond just generating text
-  3. Optionally attaching a **knowledge source** (files, a search index) for grounding
-  4. Testing the agent in a chat/playground interface to confirm it invokes tools correctly and produces grounded answers
-- **Agentic AI** = the model doesn't just answer — it can decide *which* tool to call and *when*, sometimes chaining multiple steps to reach a goal
+1. Browse the **Model Catalog** (Microsoft, OpenAI, Meta, Mistral, and other providers)
+2. **Deploy** to an endpoint (serverless/pay-as-you-go vs. managed compute)
+3. Use the **chat playground** to test prompts and tune parameters
+4. Review responses, adjust the system prompt, iterate
 
-### Building a lightweight client application for an agent
-- Similar to the chat client, but the client code needs to also handle **tool-call events**: when the agent's response indicates it wants to invoke a function, the client code executes that function and returns the result to the agent to continue reasoning
-- Understand this basic loop: **user input → agent reasons → agent may call a tool → tool result returned to agent → agent produces final response**
+**Building a lightweight chat client with the Foundry SDK**
 
-## 2.2 Implement AI Solutions for Text and Speech Using Foundry
+- The **Foundry SDK** calls deployed models from your own code (Python emphasized)
+- Minimal chat client flow: authenticate → send system + user message → receive/display response → loop for multi-turn, appending prior turns
+- ⚠️ Conversation history must be **resent each turn** — the API is stateless by default (unless using a "threads"/session feature)
 
-- **Text analysis app** — a lightweight app calling a Foundry-deployed model (or a Language service resource within Foundry Tools) to perform key phrase extraction, sentiment analysis, entity recognition, or summarization on user-supplied text, then display results
-- **Responding to spoken prompts using a multimodal model** — feeding **audio input directly** to a multimodal model (rather than manually transcribing first) so the model can understand spoken questions and generate a response — reflects newer multimodal capabilities
-- **Azure Speech in Foundry Tools** — building an app using Speech capabilities (speech-to-text, text-to-speech, translation) accessible from within the Foundry ecosystem, e.g., a voice assistant that transcribes user speech, sends the text to a model, and speaks back the response
+**Creating and testing a single-agent solution in the Foundry portal**
 
-## 2.3 Implement AI Solutions with Computer Vision and Image-Generation Using Foundry
+> An **agent** = a model configured with **instructions**, plus optionally **tools/functions** it can call and/or **knowledge sources** it can retrieve from.
 
-- **Interpreting visual input via a multimodal model** — passing an image alongside a text prompt to a deployed multimodal model so it can describe, analyze, or answer questions about the image (visual Q&A, image captioning use cases)
-- **Creating new visual outputs with generative models** — using an image-generation model (deployed via Foundry) to produce new images from text prompts; understand basic parameters like prompt wording, image size/resolution, and style guidance
-- **Building a lightweight vision-capable app** — combining the above into a simple client: user uploads an image and/or types a prompt → app sends both to the model → displays the generated text or image response
+Building an agent typically involves:
+1. Defining the agent's instructions (persona + task)
+2. Attaching **tools** (function calling) for actions beyond text generation
+3. Optionally attaching a **knowledge source** for grounding
+4. Testing in a chat/playground interface
 
-## 2.4 Implement AI Solutions for Information Extraction Using Foundry (Content Understanding)
+> [!TIP]
+> **Agentic AI** = the model doesn't just answer — it decides *which* tool to call and *when*, sometimes chaining multiple steps to reach a goal.
 
-**Azure AI Content Understanding** (within Foundry Tools) is a major new focus area. Know these four extraction scenarios:
+**Building a lightweight client application for an agent**
+
+The client must also handle **tool-call events**:
+
+```
+user input → agent reasons → agent calls a tool → tool result returned to agent → agent produces final response
+```
+
+---
+
+### 2.2 Implement AI Solutions for Text and Speech Using Foundry
+
+| Scenario | What it involves |
+|---|---|
+| **Text analysis app** | Lightweight app calling a Foundry-deployed model / Language service for key phrase extraction, sentiment, entities, or summarization |
+| **Spoken prompts via multimodal model** | Feed **audio directly** to a multimodal model — no manual transcription step needed |
+| **Azure Speech in Foundry Tools** | Build with speech-to-text, text-to-speech, translation inside the Foundry ecosystem (e.g., a voice assistant loop) |
+
+---
+
+### 2.3 Implement AI Solutions with Computer Vision and Image-Generation Using Foundry
+
+| Scenario | What it involves |
+|---|---|
+| **Interpreting visual input** | Pass an image + text prompt to a multimodal model for description/analysis (visual Q&A, captioning) |
+| **Creating new visual outputs** | Use an image-generation model to produce images from text prompts; tune prompt wording, size, style |
+| **Lightweight vision app** | User uploads image and/or prompt → app sends to model → displays text or image response |
+
+---
+
+### 2.4 Implement AI Solutions for Information Extraction Using Foundry (Content Understanding)
+
+**Azure AI Content Understanding** is a major new focus area. Know these four scenarios:
 
 | Source | What Content Understanding does |
 |---|---|
-| **Documents and forms** | Extracts structured fields (key-value pairs, tables, line items) from invoices, receipts, contracts, applications — using a defined schema/template |
-| **Images** | Extracts structured information from image content (e.g., reading labels, extracting fields from a photographed form, classifying visual content) |
-| **Audio and video** | Extracts transcripts, speaker information, key moments/timestamps, and summaries from audio/video content |
-| **Building an app with information extraction** | A lightweight client that submits a file (document/image/audio/video) to a Content Understanding analyzer and displays the structured output (fields, values, confidence scores) |
+| 📄 **Documents and forms** | Extracts structured fields (key-value pairs, tables, line items) from invoices, receipts, contracts using a defined schema |
+| 🖼️ **Images** | Extracts structured info from image content (labels, photographed forms, visual classification) |
+| 🎧 **Audio and video** | Extracts transcripts, speaker info, key moments/timestamps, summaries |
+| 🛠️ **Building an app** | Client submits a file to a Content Understanding analyzer, displays structured output + confidence scores |
 
-**Exam trap:** Content Understanding is broader than OCR — OCR only reads text; Content Understanding applies a schema across modalities to output structured, labeled data (e.g., "Invoice Number," "Total Due," "Vendor Name" as distinct fields), and can do this on images, audio, and video too, not just documents.
-
----
-
-## Quick-Reference: Frequently Confused Concepts
-
-| A | B | Difference |
-|---|---|---|
-| **Fairness** | **Inclusiveness** | No biased outcomes vs. broad system accessibility |
-| **OCR** | **Content Understanding** | Reads raw text vs. extracts structured, schema-based fields across multiple modalities |
-| **Agent** | **Basic chat model call** | Agent can invoke tools/functions and take multi-step actions; a plain chat call just returns text |
-| **System prompt** | **User prompt** | Sets persistent behavior/role vs. the specific ask in a given turn |
-| **Grounding** | **Fine-tuning** | Supplying live/relevant data at inference time vs. retraining/adjusting model weights on custom data |
-| **Serverless/pay-as-you-go deployment** | **Managed compute deployment** | No infra to manage, billed per call vs. dedicated compute you provision and manage |
-| **Temperature (low)** | **Temperature (high)** | More deterministic/focused output vs. more random/creative output |
-| **Speech-to-text (separate step)** | **Multimodal audio input** | Manually transcribe then send text to model vs. model directly consumes audio |
+> [!WARNING]
+> **Exam trap:** Content Understanding is broader than OCR — OCR only reads text; Content Understanding applies a schema across modalities to output structured, labeled data (e.g., "Invoice Number," "Total Due," "Vendor Name" as distinct fields) across documents, images, audio, **and** video.
 
 ---
 
-## Practice Questions
+## 🧭 Quick-Reference: Frequently Confused Concepts
 
-Test yourself before checking answers at the bottom.
+| A | vs. | B | The Difference |
+|---|:-:|---|---|
+| **Fairness** | ⚡ | **Inclusiveness** | No biased outcomes vs. broad system accessibility |
+| **OCR** | ⚡ | **Content Understanding** | Reads raw text vs. extracts structured, schema-based fields across modalities |
+| **Agent** | ⚡ | **Basic chat call** | Invokes tools/multi-step actions vs. just returns text |
+| **System prompt** | ⚡ | **User prompt** | Persistent behavior/role vs. the specific ask this turn |
+| **Grounding** | ⚡ | **Fine-tuning** | Live/relevant data at inference time vs. retraining model weights |
+| **Serverless deployment** | ⚡ | **Managed compute** | No infra to manage vs. dedicated compute you provision |
+| **Temperature (low)** | ⚡ | **Temperature (high)** | Deterministic/focused vs. random/creative |
+| **Speech-to-text (separate step)** | ⚡ | **Multimodal audio input** | Transcribe-then-send vs. model consumes audio directly |
 
-**Q1.** A company wants its AI chatbot to explain *why* it denied a customer's request, in plain language the customer can understand. Which Responsible AI principle does this primarily address?
-A) Inclusiveness
-B) Transparency
-C) Accountability
-D) Fairness
+---
 
-**Q2.** You are configuring a generative model deployment and want the output to be highly consistent and deterministic (minimal randomness) across repeated runs with the same prompt. Which parameter should you set low?
-A) Max tokens
-B) Top P
-C) Temperature
-D) Frequency penalty
+## ✅ Practice Questions (AI-901)
 
-**Q3.** Which of the following best describes an "agent" in the context of Microsoft Foundry?
+<details>
+<summary><b>Q1.</b> A company wants its AI chatbot to explain <i>why</i> it denied a customer's request, in plain language. Which Responsible AI principle applies?</summary>
+
+A) Inclusiveness&nbsp;&nbsp;B) Transparency&nbsp;&nbsp;C) Accountability&nbsp;&nbsp;D) Fairness
+
+**Answer: B — Transparency** (explaining decisions to users)
+</details>
+
+<details>
+<summary><b>Q2.</b> You want output to be highly consistent and deterministic across repeated runs with the same prompt. Which parameter should you set low?</summary>
+
+A) Max tokens&nbsp;&nbsp;B) Top P&nbsp;&nbsp;C) Temperature&nbsp;&nbsp;D) Frequency penalty
+
+**Answer: C — Temperature** (low = deterministic)
+</details>
+
+<details>
+<summary><b>Q3.</b> Which best describes an "agent" in Microsoft Foundry?</summary>
+
 A) A model that only classifies text into fixed categories
-B) A model configured with instructions and the ability to invoke tools/functions to take multi-step actions toward a goal
+B) A model configured with instructions and the ability to invoke tools/functions to take multi-step actions
 C) A synonym for any deployed generative model
 D) A dataset used to fine-tune a model
 
-**Q4.** A retail company wants to automatically extract the vendor name, invoice number, and total amount from thousands of scanned invoices in different layouts. Which Foundry capability is best suited for this?
-A) Azure AI Content Understanding
-B) Sentiment analysis
-C) Semantic segmentation
-D) Speech synthesis
+**Answer: B** — Agent = instructions + tool use for multi-step actions
+</details>
 
-**Q5.** What is the primary purpose of "grounding" a generative AI model's responses?
+<details>
+<summary><b>Q4.</b> A retailer wants to extract vendor name, invoice number, and total from thousands of scanned invoices in different layouts. Best Foundry capability?</summary>
+
+A) Azure AI Content Understanding&nbsp;&nbsp;B) Sentiment analysis&nbsp;&nbsp;C) Semantic segmentation&nbsp;&nbsp;D) Speech synthesis
+
+**Answer: A** — Content Understanding handles structured extraction across varied layouts
+</details>
+
+<details>
+<summary><b>Q5.</b> What is the primary purpose of "grounding" a generative AI model's responses?</summary>
+
 A) To make responses shorter
 B) To reduce the model's computational cost
 C) To supply relevant, up-to-date data so answers are based on facts, reducing hallucination
 D) To convert text input into embeddings
 
-**Q6.** Which deployment option in Foundry would you choose for a low-traffic prototype where you don't want to manage or provision any infrastructure?
-A) Managed compute / real-time endpoint
-B) Batch deployment
-C) Serverless / pay-as-you-go endpoint
-D) On-premises deployment
+**Answer: C**
+</details>
 
-**Q7.** A developer wants their chat client to maintain context across multiple turns of conversation using the Foundry SDK. What must the client application do?
+<details>
+<summary><b>Q6.</b> Which deployment option suits a low-traffic prototype where you don't want to manage any infrastructure?</summary>
+
+A) Managed compute / real-time endpoint&nbsp;&nbsp;B) Batch deployment&nbsp;&nbsp;C) Serverless / pay-as-you-go&nbsp;&nbsp;D) On-premises
+
+**Answer: C** — Serverless/pay-as-you-go = no infrastructure management
+</details>
+
+<details>
+<summary><b>Q7.</b> A developer wants their chat client to maintain context across multiple turns using the Foundry SDK. What must the client do?</summary>
+
 A) Nothing — the API automatically remembers all prior turns
 B) Resend the full relevant conversation history with each new request, since the API is stateless by default
 C) Only send the very first message each time
 D) Use a separate model for each turn
 
-**Q8.** Which text analysis technique would best identify that a paragraph mentions "Microsoft," "Seattle," and "March 2026" as distinct categorized items?
-A) Sentiment analysis
-B) Entity detection (NER)
-C) Summarization
-D) Keyword extraction
+**Answer: B**
+</details>
 
-**Q9.** A team wants their multimodal model to directly answer a spoken question from an uploaded audio clip, without a separate transcription step. What capability enables this?
-A) Semantic segmentation
-B) A multimodal model accepting audio input directly
-C) Object detection
-D) Batch deployment
+<details>
+<summary><b>Q8.</b> Which technique would identify that a paragraph mentions "Microsoft," "Seattle," and "March 2026" as distinct categorized items?</summary>
 
-**Q10.** What distinguishes abstractive summarization from extractive summarization?
+A) Sentiment analysis&nbsp;&nbsp;B) Entity detection (NER)&nbsp;&nbsp;C) Summarization&nbsp;&nbsp;D) Keyword extraction
+
+**Answer: B** — Entity detection identifies/categorizes named entities like organizations, places, dates
+</details>
+
+<details>
+<summary><b>Q9.</b> A team wants a multimodal model to directly answer a spoken question from an audio clip, without a separate transcription step. What enables this?</summary>
+
+A) Semantic segmentation&nbsp;&nbsp;B) A multimodal model accepting audio input directly&nbsp;&nbsp;C) Object detection&nbsp;&nbsp;D) Batch deployment
+
+**Answer: B**
+</details>
+
+<details>
+<summary><b>Q10.</b> What distinguishes abstractive summarization from extractive summarization?</summary>
+
 A) Abstractive picks existing sentences verbatim; extractive generates new paraphrased text
 B) Extractive picks existing sentences verbatim; abstractive generates new paraphrased text
 C) They are the same technique with different names
 D) Abstractive only works on images
 
-**Q11.** Which principle of Responsible AI is most directly addressed by conducting extensive edge-case testing of a self-driving car's AI system before deployment?
-A) Transparency
-B) Reliability and Safety
-C) Inclusiveness
-D) Privacy and Security
+**Answer: B**
+</details>
 
-**Q12.** In the Foundry Model Catalog, what is a key reason you might choose a smaller model over a larger one for a specific task?
+<details>
+<summary><b>Q11.</b> Which Responsible AI principle is most directly addressed by extensive edge-case testing of a self-driving car's AI before deployment?</summary>
+
+A) Transparency&nbsp;&nbsp;B) Reliability and Safety&nbsp;&nbsp;C) Inclusiveness&nbsp;&nbsp;D) Privacy and Security
+
+**Answer: B**
+</details>
+
+<details>
+<summary><b>Q12.</b> In the Foundry Model Catalog, why might you choose a smaller model over a larger one for a specific task?</summary>
+
 A) Smaller models are always more accurate
 B) Smaller models typically offer lower latency and lower cost for simpler tasks
 C) Smaller models support more modalities
 D) Smaller models cannot be deployed via Foundry
 
----
-
-### Answer Key
-1. **B** — Transparency (explaining decisions to users)
-2. **C** — Temperature (low = deterministic)
-3. **B** — Agent = instructions + tool use for multi-step actions
-4. **A** — Azure AI Content Understanding (structured extraction across varied layouts)
-5. **C** — Grounding supplies real, relevant data to reduce hallucination
-6. **C** — Serverless/pay-as-you-go = no infrastructure management
-7. **B** — Must resend history; APIs are stateless by default
-8. **B** — Entity detection identifies and categorizes named entities like organizations, places, dates
-9. **B** — Direct audio input to a multimodal model
-10. **B** — Extractive = verbatim existing sentences; Abstractive = new generated text
-11. **B** — Reliability and Safety (consistent performance including edge cases)
-12. **B** — Lower latency/cost tradeoff for simpler tasks
+**Answer: B**
+</details>
 
 ---
 
-## Exam Tips
-- This exam expects you to reason about **workflows** (deploy → prompt → test → build client) not just define terms — review the actual steps of using the Foundry portal and SDK.
-- Basic Python literacy is assumed — you should recognize what a simple API call to send a prompt and receive a response looks like, even if you don't need to write it from scratch.
-- **Agentic AI and Content Understanding are the biggest new content areas** vs. AI-900 — spend extra time here.
-- Old AI-900 material on standalone "Azure AI Vision," "Azure AI Language," etc. as separate resources is still conceptually useful (Domain 1 overlaps a lot with AI-900), but the *implementation* focus has shifted to accessing these capabilities through Foundry.
-- Use Microsoft's free official practice assessment on **AI Skills Navigator** before the real exam.
+## 📋 Exam Tips Checklist
+
+- [ ] Review the **actual steps** of the Foundry portal/SDK workflow — this exam tests reasoning about workflows, not just definitions
+- [ ] Recognize a simple Python API call to send a prompt / receive a response (basic Python literacy assumed)
+- [ ] Spend extra time on **Agentic AI** and **Content Understanding** — the biggest new areas vs. AI-900
+- [ ] Don't discard old AI-900 material on Azure AI Vision/Language etc. — Domain 1 overlaps heavily, just accessed via Foundry now
+- [ ] Take the free official practice assessment on **AI Skills Navigator** before the real exam
 
 ---
 
-# APPENDIX: AI-900 (Legacy) Material
+## 📦 Appendix: AI-900 (Legacy) Material
 
-AI-901 no longer tests these directly as separate exam sub-skills, but this content is useful background — it explains the classic ML foundations and old service-by-service breakdown that AI-901 assumes you've internalized (it just tests the *newer, Foundry-based* application layer on top). Worth knowing if you're studying from older resources, interviewing at a place still using this terminology, or just want the fuller conceptual picture.
+> [!NOTE]
+> AI-901 no longer tests these as separate exam sub-skills, but this content is useful background — the classic ML foundations and service-by-service breakdown that AI-901 assumes you've internalized. Worth knowing for older resources, interviews, or the fuller conceptual picture.
 
-## A.1 Machine Learning Fundamentals (AI-900 Domain, 15–20%)
+<details>
+<summary><b>A.1 — Machine Learning Fundamentals (AI-900 Domain, 15–20%)</b></summary>
 
-### Core ML Techniques
+**Core ML Techniques**
 - **Regression** — predicts a **continuous numeric value** (e.g., house price, temperature)
-- **Classification** — predicts a **category/class label** (e.g., spam vs. not spam)
-  - Binary classification (2 classes) vs. multiclass classification (3+ classes)
-- **Clustering** — groups similar data points **without labeled outcomes** (unsupervised) — e.g., customer segmentation
+- **Classification** — predicts a **category/class label** (e.g., spam vs. not spam); binary (2 classes) or multiclass (3+)
+- **Clustering** — groups similar data points **without labeled outcomes** (unsupervised), e.g., customer segmentation
 
-**Key distinction:** Regression/Classification = **supervised learning** (labeled data). Clustering = **unsupervised learning** (no labels).
+> **Key distinction:** Regression/Classification = **supervised learning**. Clustering = **unsupervised learning**.
 
-### Deep Learning & Transformer Architecture
-- **Deep learning** — multi-layered **neural networks** modeling complex patterns; needs large data/compute (often GPUs)
-- **Neural network basics:** input layer → hidden layer(s) → output layer; nodes have weights, adjusted via training
-- **Transformer architecture** (still directly relevant to AI-901's Domain 1.2):
-  - **Attention mechanism** — weighs importance of tokens relative to each other regardless of position
-  - **Encoder** — builds a representation/understanding of input
-  - **Decoder** — generates output based on that representation
-  - Encoder-only (BERT-style, understanding), decoder-only (GPT-style, generation), encoder-decoder (translation-style)
+**Deep Learning & Transformer Architecture**
+- **Deep learning** — multi-layered **neural networks**; needs large data/compute (often GPUs)
+- **Neural network basics:** input layer → hidden layer(s) → output layer; weighted nodes adjusted via training
+- **Transformer architecture** (still directly relevant to AI-901 Domain 1.2):
+  - **Attention mechanism** — weighs token importance regardless of position
+  - **Encoder** — builds a representation of input
+  - **Decoder** — generates output from that representation
+  - Encoder-only (BERT-style), decoder-only (GPT-style), encoder-decoder (translation-style)
 
-### Core ML Concepts
-- **Features** — input variables used to make predictions (e.g., square footage, bedrooms)
-- **Labels** — the known output/answer being predicted (e.g., actual sale price) — only present in supervised learning
-- **Training dataset** — data used to teach/fit the model
-- **Validation dataset** — separate data used to tune the model and check against overfitting before final evaluation
+**Core ML Concepts**
+| Term | Meaning |
+|---|---|
+| **Features** | Input variables used to make predictions |
+| **Labels** | The known output being predicted (supervised learning only) |
+| **Training dataset** | Data used to teach/fit the model |
+| **Validation dataset** | Data used to tune the model and check against overfitting |
 
-### Azure Machine Learning (classic) Capabilities
-- **Automated ML (AutoML)** — automatically tries multiple algorithms/hyperparameters to find the best model with minimal manual coding
-- **Azure ML Designer** — drag-and-drop, no-code/low-code visual pipeline builder
+**Azure Machine Learning (classic) Capabilities**
+- **Automated ML (AutoML)** — automatically tries algorithms/hyperparameters for the best model
+- **Azure ML Designer** — drag-and-drop, no-code/low-code pipeline builder
 - **Compute options:** Compute Instances (dev workstation), Compute Clusters (scalable training, autoscale to 0), Inference Clusters (AKS-based deployment), Attached Compute (external resources)
-- **Datastores** — connections to Blob Storage, Data Lake, etc., feeding data into pipelines
-- **Model management & deployment:** register models in a model registry for versioning; deploy as a **real-time endpoint** (immediate predictions) or **batch endpoint** (large-scale async predictions)
-- **Responsible AI dashboard** — Azure ML tooling for fairness, explainability, error analysis
+- **Datastores** — connections to Blob Storage, Data Lake, etc.
+- **Model management:** register in a model registry; deploy as **real-time endpoint** or **batch endpoint**
+- **Responsible AI dashboard** — fairness, explainability, error analysis tooling
 
-## A.2 Computer Vision Workloads — Classic Service Breakdown (AI-900 Domain, 15–20%)
+</details>
 
-### Types of Computer Vision Solutions
+<details>
+<summary><b>A.2 — Computer Vision Workloads: Classic Service Breakdown (AI-900 Domain, 15–20%)</b></summary>
+
 | Solution | What it does |
 |---|---|
 | **Image classification** | Assigns a label/category to an entire image |
-| **Object detection** | Identifies multiple objects and draws **bounding boxes** with labels |
+| **Object detection** | Identifies multiple objects, draws **bounding boxes** with labels |
 | **Semantic segmentation** | Classifies every pixel into a category — most granular |
 | **OCR** | Extracts printed or handwritten text from images/documents |
 | **Facial detection** | Locates human faces (bounding box) |
-| **Facial analysis** | Extracts attributes (age estimate, emotion, head pose) — subject to Responsible AI restrictions |
+| **Facial analysis** | Extracts attributes (age estimate, emotion, head pose) — Responsible AI restricted |
 
-**Trap:** Object detection = bounding box + label per object. Image classification = ONE label for the whole image. Segmentation = pixel-level, most precise.
+> [!WARNING]
+> **Trap:** Object detection = bounding box + label per object. Image classification = ONE label for the whole image. Segmentation = pixel-level, most precise.
 
-### Classic Azure Tools/Services
-- **Azure AI Vision** (formerly Computer Vision) — image analysis (tags, captions, objects, brands, adult content moderation), OCR/Read API, spatial analysis
-- **Azure AI Custom Vision** — train your **own custom** image classification/object detection model with your own labeled images
-- **Azure AI Face service** — face detection, verification, and analysis; strict Responsible AI gating around identification use cases
+**Classic Azure Tools/Services**
+- **Azure AI Vision** (formerly Computer Vision) — image analysis, OCR/Read API, spatial analysis
+- **Azure AI Custom Vision** — train your **own custom** classifier/detector on your own labeled images
+- **Azure AI Face service** — face detection, verification, analysis; strict Responsible AI gating
 
-## A.3 NLP Workloads — Classic Service Breakdown (AI-900 Domain, 15–20%)
+</details>
 
-### Common NLP Tasks
+<details>
+<summary><b>A.3 — NLP Workloads: Classic Service Breakdown (AI-900 Domain, 15–20%)</b></summary>
+
 | Task | Description |
 |---|---|
 | **Key phrase extraction** | Pulls out main talking points/phrases |
 | **Entity recognition (NER)** | Identifies/categorizes entities — people, places, orgs, dates, quantities |
 | **Sentiment analysis** | Positive/negative/neutral/mixed, with confidence scores |
 | **Language detection** | Identifies which language text is written in |
-| **Language modeling** | Predicting/generating likely word sequences; underlies autocomplete, generation |
-| **Speech recognition (speech-to-text)** | Converts spoken audio to text |
-| **Speech synthesis (text-to-speech)** | Converts text to natural spoken audio |
+| **Language modeling** | Predicting/generating likely word sequences |
+| **Speech recognition (STT)** | Converts spoken audio to text |
+| **Speech synthesis (TTS)** | Converts text to natural spoken audio |
 | **Translation** | Converts text/speech between languages |
 
-### Classic Azure Tools/Services
-- **Azure AI Language** — key phrase extraction, entity recognition, sentiment analysis, language detection; **Conversational Language Understanding (CLU)** for custom chatbot NLU; **Question Answering** for FAQ-style knowledge bases; extractive/abstractive summarization
-- **Azure AI Speech** — speech-to-text, text-to-speech, **Speech Translation** (real-time speech-to-speech/text), speaker recognition
-- **Azure AI Translator** — dedicated text translation (distinct from Speech Translation, which handles audio)
+**Classic Azure Tools/Services**
+- **Azure AI Language** — key phrase extraction, entity recognition, sentiment, language detection; **CLU** for custom chatbot NLU; **Question Answering** for FAQ-style knowledge bases; extractive/abstractive summarization
+- **Azure AI Speech** — STT, TTS, **Speech Translation**, speaker recognition
+- **Azure AI Translator** — dedicated text translation (distinct from Speech Translation)
 
-**Trap:** Azure AI Language (text-based NLP) vs. Azure AI Translator (dedicated text translation) vs. Azure AI Speech (audio in/out).
+> [!WARNING]
+> **Trap:** Azure AI Language (text-based NLP) vs. Azure AI Translator (dedicated text translation) vs. Azure AI Speech (audio in/out).
 
-## A.4 Generative AI Workloads — AI-900's Original Framing (20–25%)
+</details>
 
-AI-900's final version (May 2025 update) already introduced generative AI before AI-901 expanded it into the dominant, hands-on Domain 2 above:
+<details>
+<summary><b>A.4 — Generative AI Workloads: AI-900's Original Framing (20–25%)</b></summary>
+
+AI-900's final version (May 2025 update) already introduced generative AI before AI-901 expanded it into the dominant, hands-on Domain 2:
+
 - **Azure AI Foundry** (formerly Azure AI Studio) — unified platform to explore, build, test, deploy generative AI apps/agents; includes the **Model catalog**
-- **Azure OpenAI Service** — Azure-hosted access to OpenAI's models (GPT family, embeddings, DALL·E) with enterprise security/compliance; built-in **content filtering**; supports fine-tuning and grounding with your own data
-- **Prompt engineering, grounding, and hallucination** — same core concepts still tested in AI-901 (see Domain 1.2/2.1 above)
+- **Azure OpenAI Service** — Azure-hosted OpenAI models (GPT family, embeddings, DALL·E) with enterprise security/compliance; built-in content filtering; fine-tuning and grounding support
+- **Prompt engineering, grounding, hallucination** — same core concepts still tested in AI-901
 
-**Trap:** Azure AI Foundry = the overall platform/workspace; Azure OpenAI Service = specifically OpenAI's models hosted on Azure; Model Catalog = the model-browsing feature inside Foundry.
+> [!WARNING]
+> **Trap:** Azure AI Foundry = the overall platform. Azure OpenAI Service = specifically OpenAI's models hosted on Azure. Model Catalog = the model-browsing feature inside Foundry.
 
-## A.5 AI-900 Quick-Reference: Frequently Confused Pairs
+</details>
+
+<details>
+<summary><b>A.5 — AI-900 Quick-Reference: Frequently Confused Pairs</b></summary>
+
 - **Classification vs. Clustering** — labeled/supervised vs. unlabeled/unsupervised
 - **Object Detection vs. Semantic Segmentation** — bounding boxes vs. pixel-level classification
 - **Azure AI Language vs. Azure AI Translator** — general NLP tasks vs. dedicated translation
 - **Azure AI Vision vs. Azure AI Custom Vision** — pre-built general model vs. train-your-own custom model
 - **Training dataset vs. Validation dataset** — fit the model vs. tune/check the model
 
-## A.6 AI-900 Legacy Practice Questions
+</details>
+
+<details>
+<summary><b>A.6 — AI-900 Legacy Practice Questions</b></summary>
 
 **Q1.** A dataset has no labeled outcomes, and the goal is to group similar customers together. Which ML technique applies?
-A) Regression
-B) Classification
-C) Clustering
-D) Object detection
+A) Regression&nbsp;&nbsp;B) Classification&nbsp;&nbsp;C) Clustering&nbsp;&nbsp;D) Object detection
+**Answer: C**
 
 **Q2.** Which computer vision solution draws a bounding box around each detected item and labels it?
-A) Image classification
-B) Object detection
-C) Semantic segmentation
-D) OCR
+A) Image classification&nbsp;&nbsp;B) Object detection&nbsp;&nbsp;C) Semantic segmentation&nbsp;&nbsp;D) OCR
+**Answer: B**
 
-**Q3.** Which Azure service would you use specifically to train your own custom image classifier using your own labeled photos?
-A) Azure AI Vision
-B) Azure AI Custom Vision
-C) Azure AI Face
-D) Azure Machine Learning Designer
+**Q3.** Which Azure service trains your own custom image classifier using your own labeled photos?
+A) Azure AI Vision&nbsp;&nbsp;B) Azure AI Custom Vision&nbsp;&nbsp;C) Azure AI Face&nbsp;&nbsp;D) Azure ML Designer
+**Answer: B**
 
 **Q4.** What is the difference between a training dataset and a validation dataset?
 A) They are the same thing
 B) Training data fits the model; validation data tunes/checks it before final evaluation
 C) Validation data is only used for clustering
 D) Training data is always unlabeled
+**Answer: B**
 
 **Q5.** Which Azure AI Language feature would identify that a support ticket is expressing frustration?
-A) Key phrase extraction
-B) Sentiment analysis
-C) Language detection
-D) Entity recognition
+A) Key phrase extraction&nbsp;&nbsp;B) Sentiment analysis&nbsp;&nbsp;C) Language detection&nbsp;&nbsp;D) Entity recognition
+**Answer: B**
 
-### Answer Key (A.6)
-1. **C** — Clustering (unsupervised, no labels)
-2. **B** — Object detection (bounding boxes + labels)
-3. **B** — Azure AI Custom Vision (train-your-own model)
-4. **B** — Training fits, validation tunes/checks
-5. **B** — Sentiment analysis
+</details>
+
+---
+
+<div align="center">
+
+**Good luck! 🎓** — Study the concepts, run through the practice questions until the answers feel obvious, and take the official practice assessment before exam day.
+
+</div>
